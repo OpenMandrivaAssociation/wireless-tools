@@ -1,7 +1,7 @@
 %define name 	wireless-tools
-%define version	28
-%define pre	0
-%define rel	3
+%define version	29
+%define pre	22
+%define rel	1
 %if %{pre}
 %define release	%mkrel 0.pre%{pre}.%{rel}
 %define src	wireless_tools.%{version}.pre%{pre}.tar.bz2
