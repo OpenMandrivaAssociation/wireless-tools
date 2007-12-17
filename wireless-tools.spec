@@ -23,7 +23,6 @@ Release: %{release}
 URL: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 Source: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{src}
 Patch2: wireless_tools.27-wireless-man-upd.patch.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Conflicts: man-pages-fr < 1.58.0-16mdk
 # (blino) strict Requires, see 28-1.pre9.2mdk changelog
 Requires: %{lib_name} = %{version}-%{release}
