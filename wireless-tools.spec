@@ -1,7 +1,7 @@
 %define name 	wireless-tools
 %define version	29
 %define pre	0
-%define rel	1
+%define rel	2
 %if %{pre}
 %define release	%manbo_mkrel 0.pre%{pre}.%{rel}
 %define src	wireless_tools.%{version}.pre%{pre}.tar.gz
@@ -22,7 +22,6 @@ Version: %{version}
 Release: %{release}
 URL: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 Source: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{src}
-Patch0: wireless_tools.29-fix-wireless.h-includes.patch
 Patch2: wireless_tools.27-wireless-man-upd.patch.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Conflicts: man-pages-fr < 1.58.0-16mdk
@@ -60,7 +59,6 @@ wireless tools.
 
 %prep
 %setup -q -n wireless_tools.%{version}
-%patch0 -p1
 %patch2 -p0
 chmod a+r %{docs}
 
