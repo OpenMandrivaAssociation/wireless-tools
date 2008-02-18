@@ -3,10 +3,10 @@
 %define pre	22
 %define rel	1
 %if %{pre}
-%define release	%mkrel 0.pre%{pre}.%{rel}
+%define release	%manbo_mkrel 0.pre%{pre}.%{rel}
 %define src	wireless_tools.%{version}.pre%{pre}.tar.bz2
 %else
-%define release	%mkrel %{rel}
+%define release	%manbo_mkrel %{rel}
 %define src	wireless_tools.%{version}.tar.bz2
 %endif
 %define lib_name_orig libiw
