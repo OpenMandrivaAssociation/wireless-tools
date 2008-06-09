@@ -81,8 +81,12 @@ install -m 644 fr/* $RPM_BUILD_ROOT%_mandir/fr/man8/
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post -n %{lib_name} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name} -p /sbin/ldconfig
+%endif
 
 %triggerpostun -- wireless-tools < 28-1.pre9.3mdk
 [ -f /etc/iftab ] && sed -i -e s,mac_ieee1394,mac, /etc/iftab
