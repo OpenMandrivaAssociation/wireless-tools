@@ -67,7 +67,7 @@ chmod a+r %{docs}
 %make "CFLAGS=$RPM_OPT_FLAGS -I."
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %makeinstall \
 	PREFIX=%{buildroot}%{_prefix} \
@@ -75,11 +75,11 @@ rm -rf $RPM_BUILD_ROOT
 	INSTALL_MAN=%{buildroot}%{_mandir} \
 	INSTALL_DIR=%{buildroot}/sbin
 
-mkdir -p $RPM_BUILD_ROOT%_mandir/fr/man8
-install -m 644 fr/* $RPM_BUILD_ROOT%_mandir/fr/man8/
+mkdir -p %{buildroot}%_mandir/fr/man8
+install -m 644 fr/* %{buildroot}%_mandir/fr/man8/
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{lib_name} -p /sbin/ldconfig
