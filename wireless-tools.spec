@@ -63,6 +63,7 @@ chmod a+r %{docs}
 %build
 %setup_compile_flags
 
+# (tpg) enable build shared library
 sed -i -e 's/BUILD_STATIC =.*/# BUILD_STATIC =.*/g' Makefile
 
 %make clean
@@ -101,7 +102,7 @@ rm -rf %{buildroot}
 
 %files -n %{lib_name}
 %defattr(-,root,root,0755)
-/%{_lib}/libiw.so.*
+/%{_lib}/libiw.so.%{version}*
 
 %files -n %{lib_name}-devel
 %defattr(-,root,root,0755)
