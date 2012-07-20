@@ -1,5 +1,5 @@
 %define pre	9
-%define rel	1
+%define rel	2
 %if %{pre}
 %define release	%manbo_mkrel 0.pre%{pre}.%{rel}
 %define src	wireless_tools.%{version}.pre%{pre}.tar.gz
@@ -21,10 +21,10 @@ License:	GPL
 URL:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 Source0:	http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{src}
 Patch2:		wireless_tools.27-wireless-man-upd.patch.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 Conflicts:	man-pages-fr < 1.58.0-16mdk
 # (blino) strict Requires, see 28-1.pre9.2mdk changelog
 Requires:	%{lib_name} = %{version}-%{release}
+Requires:	crda
 
 %description
 This package contain the Wireless tools, used to manipulate
@@ -65,35 +65,28 @@ chmod a+r %{docs}
 
 # (tpg) enable build shared library
 sed -i -e 's/BUILD_STATIC =.*/# BUILD_STATIC =.*/g' Makefile
+# (tpg) pass our flags
+sed -i -e 's#CFLAGS=#CFLAGS+=#' Makefile
 
 %make clean
-%make "CFLAGS=$CFLAGS -I."
+%make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall \
 	PREFIX=%{buildroot}%{_prefix} \
 	INSTALL_LIB=%{buildroot}/%{_lib} \
 	INSTALL_MAN=%{buildroot}%{_mandir} \
 	INSTALL_DIR=%{buildroot}/sbin
 
-%clean
-rm -rf %{buildroot}
+mkdir -p %{buildroot}%{_libdir}
+ln -sf ../../%{_lib}/libiw.so.%{version} %{buildroot}%{_libdir}/libiw.so
 
-%if %mdkversion < 200900
-%post -n %{lib_name} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name} -p /sbin/ldconfig
-%endif
 
 %triggerpostun -- wireless-tools < 28-1.pre9.3mdk
 [ -f /etc/iftab ] && sed -i -e s,mac_ieee1394,mac, /etc/iftab
 :
 
 %files
-%defattr(-,root,root,0755)
 %doc %{docs}
 /sbin/*
 %{_mandir}/man*/*
@@ -101,11 +94,10 @@ rm -rf %{buildroot}
 %lang(cs) %{_mandir}/cs/man*/*
 
 %files -n %{lib_name}
-%defattr(-,root,root,0755)
 /%{_lib}/libiw.so.%{version}*
 
 %files -n %{lib_name}-devel
-%defattr(-,root,root,0755)
 /%{_lib}/libiw.so
+%{_libdir}/libiw.so
 %{_includedir}/iwlib.h
 %{_includedir}/wireless.h
