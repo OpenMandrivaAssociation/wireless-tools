@@ -1,2 +1,3 @@
 sources:
-  "wireless_tools.30.pre9.tar.gz:"	41db5ced9ed3d8d3cc104ce43c19af1d72f07eec
+  "wireless_tools.27-wireless-man-upd.patch.bz2": d00953e4996ea1c5749bf42c8709fca70fac4831
+  "wireless_tools.29.tar.gz": 22040ac1497f4c5f8ddeca365591b01ae3475710
