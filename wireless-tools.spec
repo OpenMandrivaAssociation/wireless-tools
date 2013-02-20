@@ -1,29 +1,21 @@
-%define pre	9
-%define rel	2
-%if %{pre}
-%define release	%manbo_mkrel 0.pre%{pre}.%{rel}
-%define src	wireless_tools.%{version}.pre%{pre}.tar.gz
-%else
-%define release	%manbo_mkrel %{rel}
-%define src	wireless_tools.%{version}.tar.gz
-%endif
-%define lib_name_orig libiw
-%define lib_major %{version}
-%define lib_name %mklibname iw %{lib_major}
+%define sname	wireless_tools
+%define prever	9
+%define major	%{version}
+%define libname	%mklibname iw %{major}
+%define devname	%mklibname iw -d
+
 %define docs README INSTALL CHANGELOG.h DISTRIBUTIONS.txt COPYING PCMCIA.txt HOTPLUG-UDEV.txt
 
 Summary:	Wireless ethernet configuration tools
 Name:		wireless-tools
 Version:	30
-Release:	%{release}
+Release:	0.pre%{prever}.3
 Group:		System/Kernel and hardware
-License:	GPL
-URL:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
-Source0:	http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{src}
-Patch2:		wireless_tools.27-wireless-man-upd.patch.bz2
-Conflicts:	man-pages-fr < 1.58.0-16mdk
+License:	GPLv2
+Url:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
+Source0:	http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{sname}.%{version}.pre%{prever}.tar.gz
+Patch2:		wireless_tools.27-wireless-man-upd.patch
 # (blino) strict Requires, see 28-1.pre9.2mdk changelog
-Requires:	%{lib_name} = %{version}-%{release}
 Requires:	crda
 
 %description
@@ -35,28 +27,29 @@ specific stats for wireless networking equipment.
 This is specifically useful since it allows manipulation of encryption
 parameters possible with the GPL WaveLAN cards.
 
-%package -n %{lib_name}
+%package -n %{libname}
 Summary:	Wireless_tools library
 Group:		System/Libraries
-Provides:	%{lib_name_orig}
+Provides:	libiw
 
-%description -n %{lib_name}
+%description -n %{libname}
 This package contains libraries to configure and access wireless interface
 cards.
 
-%package -n %{lib_name}-devel
+%package -n %{devname}
 Summary:	Wireless_tools development library
 Group:		Development/C
-Provides:	%{lib_name_orig}-devel
-# (blino) strict Requires, see 28-1.pre9.2mdk changelog
-Requires:	%{lib_name} = %{version}-%{release}
+Requires:	%{libname} = %{version}-%{release}
+Provides:	libiw-devel
+Obsoletes:	%{_lib}iw30-devel
+Obsoletes:	%{_lib}iw29-devel
 
-%description -n %{lib_name}-devel
+%description -n %{devname}
 This package contains libraries and headers for use in developing
 wireless tools.
 
 %prep
-%setup -q -n wireless_tools.%{version}
+%setup -qn %{sname}.%{version}
 %patch2 -p0
 chmod a+r %{docs}
 
@@ -81,11 +74,6 @@ sed -i -e 's#CFLAGS=#CFLAGS+=#' Makefile
 mkdir -p %{buildroot}%{_libdir}
 ln -sf ../../%{_lib}/libiw.so.%{version} %{buildroot}%{_libdir}/libiw.so
 
-
-%triggerpostun -- wireless-tools < 28-1.pre9.3mdk
-[ -f /etc/iftab ] && sed -i -e s,mac_ieee1394,mac, /etc/iftab
-:
-
 %files
 %doc %{docs}
 /sbin/*
@@ -93,11 +81,12 @@ ln -sf ../../%{_lib}/libiw.so.%{version} %{buildroot}%{_libdir}/libiw.so
 %lang(fr) %{_mandir}/fr.*/man*/*
 %lang(cs) %{_mandir}/cs/man*/*
 
-%files -n %{lib_name}
-/%{_lib}/libiw.so.%{version}*
+%files -n %{libname}
+/%{_lib}/libiw.so.%{major}*
 
-%files -n %{lib_name}-devel
+%files -n %{devname}
 /%{_lib}/libiw.so
 %{_libdir}/libiw.so
 %{_includedir}/iwlib.h
 %{_includedir}/wireless.h
+
