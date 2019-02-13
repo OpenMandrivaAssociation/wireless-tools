@@ -1,9 +1,9 @@
-%define sname	wireless_tools
-%define prever	9
-%define major	%{version}
-%define libname	%mklibname iw %{major}
-%define devname	%mklibname iw -d
-
+%define sname wireless_tools
+%define prever 9
+%define major %{version}
+%define libname %mklibname iw %{major}
+%define devname %mklibname iw -d
+%define _disable_lto 1
 %define docs README INSTALL CHANGELOG.h DISTRIBUTIONS.txt COPYING PCMCIA.txt HOTPLUG-UDEV.txt
 
 Summary:	Wireless ethernet configuration tools
