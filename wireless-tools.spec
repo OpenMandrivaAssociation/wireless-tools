@@ -9,7 +9,7 @@
 Summary:	Wireless ethernet configuration tools
 Name:		wireless-tools
 Version:	30
-Release:	0.pre%{prever}.4
+Release:	0.pre%{prever}.5
 Group:		System/Kernel and hardware
 License:	GPLv2
 Url:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
@@ -62,7 +62,7 @@ sed -i -e 's/BUILD_STATIC =.*/# BUILD_STATIC =.*/g' Makefile
 sed -i -e 's#CFLAGS=#CFLAGS+=#' Makefile
 
 %make clean
-%make
+%make_build CC="%{__cc}"
 
 %install
 %makeinstall \
