@@ -65,7 +65,7 @@ sed -i -e 's#CFLAGS=#CFLAGS+=#' Makefile
 %make_build CC="%{__cc}"
 
 %install
-%makeinstall \
+%make_install \
 	PREFIX=%{buildroot}%{_prefix} \
 	INSTALL_LIB=%{buildroot}/%{_lib} \
 	INSTALL_MAN=%{buildroot}%{_mandir} \
