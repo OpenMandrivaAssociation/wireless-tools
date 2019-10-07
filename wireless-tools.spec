@@ -9,12 +9,13 @@
 Summary:	Wireless ethernet configuration tools
 Name:		wireless-tools
 Version:	30
-Release:	0.pre%{prever}.5
+Release:	0.pre%{prever}.6
 Group:		System/Kernel and hardware
 License:	GPLv2
 Url:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 Source0:	http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{sname}.%{version}.pre%{prever}.tar.gz
 Patch2:		wireless_tools.27-wireless-man-upd.patch
+Requires:	wireless-regdb
 
 %description
 This package contain the Wireless tools, used to manipulate
