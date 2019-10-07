@@ -15,8 +15,6 @@ License:	GPLv2
 Url:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 Source0:	http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{sname}.%{version}.pre%{prever}.tar.gz
 Patch2:		wireless_tools.27-wireless-man-upd.patch
-# (blino) strict Requires, see 28-1.pre9.2mdk changelog
-Requires:	crda
 
 %description
 This package contain the Wireless tools, used to manipulate
