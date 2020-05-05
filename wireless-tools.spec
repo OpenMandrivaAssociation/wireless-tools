@@ -6,6 +6,9 @@
 %define _disable_lto 1
 %define docs README INSTALL CHANGELOG.h DISTRIBUTIONS.txt COPYING PCMCIA.txt HOTPLUG-UDEV.txt
 
+# (tpg) 2020-05-05 Let's consider killing this package in favour of iw
+# https://wireless.wiki.kernel.org/en/users/Documentation/iw
+
 Summary:	Wireless ethernet configuration tools
 Name:		wireless-tools
 Version:	30
