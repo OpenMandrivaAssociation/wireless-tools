@@ -12,7 +12,7 @@
 Summary:	Wireless ethernet configuration tools
 Name:		wireless-tools
 Version:	30
-Release:	0.pre%{prever}.7
+Release:	ZED'S DEAD BABY
 Group:		System/Kernel and hardware
 License:	GPLv2
 Url:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
