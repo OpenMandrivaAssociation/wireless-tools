@@ -15,7 +15,7 @@ Version:	30
 Release:	ZED'S DEAD BABY
 Group:		System/Kernel and hardware
 License:	GPLv2
-Url:		http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
+Url:		https://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 Source0:	http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{sname}.%{version}.pre%{prever}.tar.gz
 Patch2:		wireless_tools.27-wireless-man-upd.patch
 Requires:	wireless-regdb >= 2019.06.03
