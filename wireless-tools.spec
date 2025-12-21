@@ -20,6 +20,7 @@ Source0:	http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/%{sname}.%{version
 Patch2:		wireless_tools.27-wireless-man-upd.patch
 Requires:	wireless-regdb >= 2019.06.03
 
+BuildRequires:	make
 %description
 This package contain the Wireless tools, used to manipulate
 the Wireless Extensions. The Wireless Extension is an interface
